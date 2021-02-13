@@ -1,0 +1,3 @@
+/mnt/c/CCOMP 2020-2/ED2/union-find/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/CCOMP 2020-2/ED2/union-find/cmake-build-debug/CMakeFiles/union_find.dir
+/mnt/c/CCOMP 2020-2/ED2/union-find/cmake-build-debug/CMakeFiles/edit_cache.dir

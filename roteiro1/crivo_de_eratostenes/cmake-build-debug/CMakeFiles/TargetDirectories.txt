@@ -1,0 +1,3 @@
+/mnt/c/CCOMP 2020-2/ED2/roteiro1/crivo_de_eratostenes/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/CCOMP 2020-2/ED2/roteiro1/crivo_de_eratostenes/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/CCOMP 2020-2/ED2/roteiro1/crivo_de_eratostenes/cmake-build-debug/CMakeFiles/crivo_de_eratostenes.dir

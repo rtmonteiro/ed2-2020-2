@@ -1,32 +1,27 @@
 #include <stdio.h>
-#include <time.h>
+#include <stdlib.h>
+#include <math.h> 
+#include <string.h>
+#include "crivo.h"
 
-#define N 8000000 // char 8.388.608
-// #define N 2097152 // int
-// #define N 1000
+int main(int argc, char** argv) {
+    // EX: ./main 3 0 => cria um vetor de 10^3 e NÂO apresenta os primos
 
-int main() {
-    int i, j;
-    char a[N+1];
-    for (a[1] = '0', i = 2 ; i <= N; i++) a[i] = '1';
-
-    clock_t start = clock();
-    for (i = 2; i <= N/2; i++) {
-        if(a[i] == '1') {
-            for (j = 2; j <= N/i; j++) {
-                a[i*j] = '0';
-            }
-        }
+    if (argc < 3) {
+        printf("ERRO: Digite a magnitude do vetor\n");
+        printf("      e se deseja apresentar os primos\n");
+        return -1;
     }
-    clock_t end = clock();
+    int magnitude = atoi(argv[1]);
+    int apresentaPrimos = atoi(argv[2]);
 
-//    for (int i = 1; i <= N; ++i) {
-//        if (a[i] == '1') printf("%d ", i);
-//    }
+    void *a = initArray(magnitude);
 
-    double seconds = (( float ) end - start ) / CLOCKS_PER_SEC ;
-    printf ("\n\ttempo em segundos: % f \n" , seconds );
+    findPrimes(a, magnitude);
 
+    if (apresentaPrimos) {
+        printPrimes(a, magnitude);
+    }
 
     return 0;
 }

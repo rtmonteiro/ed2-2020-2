@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h> 
-#include <string.h>
 #include "crivo.h"
 
 int main(int argc, char** argv) {
@@ -22,6 +20,8 @@ int main(int argc, char** argv) {
     if (apresentaPrimos) {
         printPrimes(a, magnitude);
     }
+
+    free(a);
 
     return 0;
 }

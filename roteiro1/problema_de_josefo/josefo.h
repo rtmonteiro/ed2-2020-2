@@ -5,7 +5,10 @@
 #ifndef PROBLEMA_DE_JOSEFO_JOSEFO_H
 #define PROBLEMA_DE_JOSEFO_JOSEFO_H
 
-void* initProblem(int size);
+#include "list.h"
 
+node* initProblem(int size);
+
+void runProblem(int M, node *t);
 
 #endif //PROBLEMA_DE_JOSEFO_JOSEFO_H

@@ -10,6 +10,11 @@ typedef struct Node {
     struct Node *next;
 } node;
 
-void *initCircularList(int v);
+node *initCircularList(int v);
+
+node *insertNextNode(node *t, int v);
+
+void deleteNextNode(node *t);
+
 
 #endif //PROBLEMA_DE_JOSEFO_LIST_H

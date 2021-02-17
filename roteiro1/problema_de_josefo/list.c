@@ -5,17 +5,17 @@
 #include <stdlib.h>
 #include "list.h"
 
-void *initCircularList(int v) {
+node *initCircularList(int v) {
     node *a;
     a = (node *) malloc(sizeof(node));
-    a->next = NULL;
+    a->next = a;
     a->key = v;
     return a;
 }
 
-void *insertNextNode(node *t, int v) {
+node *insertNextNode(node *t, int v) {
     node *new = (node *) malloc(sizeof(node));
-    new->next = t->next->next;
+    new->next = NULL;
     t->next = new;
     new->key = v;
     return new;

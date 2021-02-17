@@ -1,35 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
+#include "josefo.h"
 
-int main() {
-    int i, N, M;
-    node *t, *x;
-    scanf("%d %d", &N, &M);
+void runProblem(int M, node *t);
 
-    t = (node*) malloc(sizeof(node));
-    t->key = 1;
+int main(int argc, char** argv) {
+    if (argc == 1 || argc > 3) return -1;
 
-    x = t;
+    int N = atoi(argv[1]);
+    int M = atoi(argv[2]);
+    node *t;
 
-    for (i = 2; i <= N ; ++i) {
-        t->next = (node*)malloc(sizeof(node));
-        t = t->next;
-        t->key = i;
-    }
+    t = initProblem(N);
 
-    t->next = x;
-
-    while (t != t->next) {
-        for (i = 1; i < M; ++i) {
-            t = t->next;
-        }
-        printf("%d ", t->next->key);
-        x = t->next;
-        t->next = t->next->next;
-        free(x);
-    }
-    printf("%d\n", t->key);
+    runProblem(M, t);
 
     return 0;
 }

@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "stack_int.h"
+#include "stack.h"
 #include "stack_char.h"
+
+
 
 int main() {
     char line[1024];
@@ -10,31 +12,31 @@ int main() {
     int i = 0;
     char digit;
 
-    stackInt *stackNumbers = initStackInt();
-    stackChar *stackOperations = initStackChar();
+    stack *stackNumbers = initStack();
+    stack *stackOperations = initStack();
 
     while ((digit = line[i]) != '\0') {
         if (digit == '(') { i++; continue; }
-        else if (digit >= '0' && digit <= '9') pushInt(stackNumbers, atoi(&digit));
-        else if (digit == '+') pushChar(stackOperations, '+');
-        else if (digit == '-') pushChar(stackOperations, '-');
-        else if (digit == '*') pushChar(stackOperations, '*');
-        else if (digit == '/') pushChar(stackOperations, '/');
+        else if (digit >= '0' && digit <= '9') push(stackNumbers, atoi(&digit));
+        else if (digit == '+') push(stackOperations, (void *) '+');
+        else if (digit == '-') push(stackOperations, (void *) '-');
+        else if (digit == '*') push(stackOperations, (void *) '*');
+        else if (digit == '/') push(stackOperations, (void *) '/');
         else if (digit == ')') {
-            char op = popChar(stackOperations);
-            int b = popInt(stackNumbers);
-            int a = popInt(stackNumbers);
+            char op = (char) pop(stackOperations);
+            int b = (int) pop(stackNumbers);
+            int a = (int) pop(stackNumbers);
             switch (op) {
-                case '+': pushInt(stackNumbers, a + b); break;
-                case '-': pushInt(stackNumbers, a - b); break;
-                case '*': pushInt(stackNumbers, a * b); break;
-                case '/': pushInt(stackNumbers, a / b); break;
+                case '+': push(stackNumbers, (void *) (a + b)); break;
+                case '-': push(stackNumbers, (void *) (a - b)); break;
+                case '*': push(stackNumbers, (void *) (a * b)); break;
+                case '/': push(stackNumbers, (void *) (a / b)); break;
             }
         }
         i++;
     }
 
-    printf("%d", popInt(stackNumbers));
+    printf("%d", (int) pop(stackNumbers));
 
     free(stackNumbers);
     free(stackOperations);

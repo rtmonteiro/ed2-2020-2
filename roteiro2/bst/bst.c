@@ -46,17 +46,55 @@ bst *deleteBST(bst *root) {
     return NULL;
 }
 
+void deleteNode(bst *root) {
+    free(root);
+}
+
 void printBST(bst *root) {
     if ( root != NULL ) {
         printBST(root->left);
-        printf("%d \n", root->key);
+        printf("%d ", root->key);
         printBST(root->right);
     }
+}
+
+void printNode(bst *root) {
+    printf("%d ", root->key);
 }
 
 int getBSTHeight(bst *root) {
     if (root == NULL) return -1;
     else return (int) fmax( getBSTHeight(root->left), getBSTHeight(root->right) ) + 1;
+}
+
+void rec_preorder(bst *t, void (*visit)(bst *)) {
+    visit(t);
+    if (t->left != NULL) {
+        rec_preorder(t->left, visit);
+    }
+    if (t->right != NULL) {
+        rec_preorder(t->right, visit);
+    }
+}
+
+void rec_inorder(bst *t, void (*visit)(bst *)) {
+    if (t->left != NULL) {
+        rec_inorder(t->left, visit);
+    }
+    visit(t);
+    if (t->right != NULL) {
+        rec_inorder(t->right, visit);
+    }
+}
+
+void rec_postorder(bst *t, void (*visit)(bst *)) {
+    if (t->left != NULL) {
+        rec_postorder(t->left, visit);
+    }
+    if (t->right != NULL) {
+        rec_postorder(t->right, visit);
+    }
+    visit(t);
 }
 
 

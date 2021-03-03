@@ -24,16 +24,9 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < N; ++i) {
         getline(&line_buf, &line_buf_size, fp);
         arr[i] = (Item) strtol(line_buf, NULL, 10);
-        printf("%d ", arr[i]);
     }
 
     sort(arr, 0, N);
-    printf("\n");
 
-    for (int i = 0; i < N; ++i) {
-        printf("%d ", arr[i]);
-    }
-
-    printf("IUPI!\n");
     return 0;
 }

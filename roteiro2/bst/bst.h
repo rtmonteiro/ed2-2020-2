@@ -27,4 +27,10 @@ void rec_inorder(bst *t, void (*visit)(bst *));
 
 void rec_postorder(bst *t, void (*visit)(bst *));
 
+void nonrec_stack_preorder(bst *root, void (*visit)(bst *));
+
+void nonrec_stack_inorder(bst *root, void (*visit)(bst *));
+
+void nonrec_stack_postorder(bst *root, void (*visit)(bst *));
+
 #endif //BST_BST_H

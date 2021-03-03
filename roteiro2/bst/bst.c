@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "bst.h"
+#include "stack.h"
 
 struct Bst {
     int key;
@@ -96,6 +97,73 @@ void rec_postorder(bst *t, void (*visit)(bst *)) {
     }
     visit(t);
 }
+
+void nonrec_stack_preorder(bst *root, void (*visit)(bst *)) {
+    if (root == NULL) return;
+    stack *s = initStack();
+    bst *t = root;
+    push(s, t);
+
+    while (!isEmpty(s)) {
+        t = (bst *) pop(s);
+        visit(t);
+
+        if (t->right) push(s, t->right);
+        if (t->left) push(s, t->left);
+    }
+    free(s);
+}
+
+void nonrec_stack_inorder(bst *root, void (*visit)(bst *)) {
+    int done = 0;
+    stack *s = initStack();
+    bst *t = root;
+    while (!done) {
+        if (t != NULL) {
+            push(s, t);
+            t = t->left;
+        }
+        else {
+            if (!isEmpty(s)) {
+                t = (bst *) pop(s);
+                visit(t);
+                t = t->right;
+            } else {
+                done = 1;
+            }
+        }
+    }
+    free(s);
+}
+
+void nonrec_stack_postorder(bst *root, void (*visit)(bst *)) {
+    if (root == NULL) return;
+    stack *s = initStack();
+    bst *t = root;
+
+    do {
+        while (t) {
+            if (t->right) push(s, t->right);
+            push(s, t);
+
+            t = t->left;
+        }
+
+        t = pop(s);
+
+        if (t->right && top(s) == t->right) {
+            pop(s);
+            push(s, t);
+            t = t->right;
+        }
+        else {
+            visit(t);
+            t = NULL;
+        }
+    } while (!isEmpty(s));
+    free(s);
+}
+
 
 
 

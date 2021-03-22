@@ -19,7 +19,7 @@ static void merge(Item *a, Item *aux, int lo, int mid, int hi) {
 }
 
 void insert_sort(Item *a, int lo, int hi){
-    for (int i = lo; i <= hi; ++i) {
+    for (int i = lo + 1; i <= hi; ++i) {
         int j = i - 1;
         int k = a[i];
         while (j>=lo && less(k, a[j])){
@@ -38,6 +38,7 @@ static void merge_sort(Item *a, Item *aux, int lo, int hi) {
     int mid = lo + (hi - lo) / 2;
     merge_sort(a, aux, lo, mid);
     merge_sort(a, aux, mid+1, hi);
+    if (!less(a[mid+1], a[mid])) return;
     merge(a, aux, lo, mid, hi);
 }
 

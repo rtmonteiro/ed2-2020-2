@@ -1,7 +1,3 @@
-//
-// Created by Pichau on 22/03/2021.
-//
-
 #include <stdlib.h>
 #include "item.h"
 
@@ -31,14 +27,17 @@ void insert_sort(Item *a, int lo, int hi){
 }
 
 static void merge_sort(Item *a, Item *aux, int lo, int hi) {
-    if (hi <= lo + CUTOFF - 1) {
-        insert_sort(a, lo, hi);
-        return;
-    }
+// === CUTOFF ===
+//    if (hi <= lo + CUTOFF - 1) {
+//        insert_sort(a, lo, hi);
+//        return;
+//    }
+    if (hi <= lo) return; // === SEM CUTOFF ===
     int mid = lo + (hi - lo) / 2;
     merge_sort(a, aux, lo, mid);
     merge_sort(a, aux, mid+1, hi);
-    if (!less(a[mid+1], a[mid])) return;
+// === MERGE JUMP ===
+//    if (!less(a[mid+1], a[mid])) return;
     merge(a, aux, lo, mid, hi);
 }
 

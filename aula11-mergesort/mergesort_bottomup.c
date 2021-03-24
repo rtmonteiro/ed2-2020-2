@@ -43,6 +43,7 @@ void sort(Item *a, int lo, int hi) {
             left = i;
             middle = i + size < N ? i + size : N;
             right = i + 2*size < N ? i + 2*size : N;
+            if (!less(a[middle], a[middle-1])) return;
             merge(a, aux, left, middle, right);
         }
     }

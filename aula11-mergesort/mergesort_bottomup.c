@@ -26,9 +26,8 @@ void sort(Item *a, int lo, int hi) {
             left = i;
             middle = i + size < N ? i + size : N;
             right = i + 2*size < N ? i + 2*size : N;
-            printf("lo: %d mid: %d hi: %d\n", left, middle, right);
             merge(a, aux, left, middle, right);
         }
-        printf("======\n");
     }
+    free(aux);
 }

@@ -25,8 +25,11 @@ int main(int argc, char *argv[]) {
         getline(&line_buf, &line_buf_size, fp);
         a[i] = (Item) strtol(line_buf, NULL, 10);
     }
+    free(line_buf);
 
     sort(a, 0, N);
+
+    free(a);
 
     return 0;
 }

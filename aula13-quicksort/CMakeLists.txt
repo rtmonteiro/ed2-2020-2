@@ -3,4 +3,4 @@ project(aula13_quicksort C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(aula13_quicksort main.c)
+add_executable(aula13_quicksort main.c quicksort.c)

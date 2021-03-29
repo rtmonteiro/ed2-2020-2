@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
         a[i] = (Item) strtol(line_buf, NULL, 10);
     }
 
-    sort(a, 0, N);
+    sort(a, 0, N - 1);
 
     return 0;
 }

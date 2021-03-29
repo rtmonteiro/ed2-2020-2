@@ -34,11 +34,11 @@ static int partition(Item *a, int lo, int hi) {
 }
 
 static void quick_sort(Item *a, int lo, int hi) {
-    if (hi <= lo) return;
-//    if (hi <= lo + CUTOFF - 1) {
-//        insert_sort(a, lo, hi);
-//        return;
-//    }
+//    if (hi <= lo) return;
+    if (hi <= lo + CUTOFF - 1) {
+        insert_sort(a, lo, hi);
+        return;
+    }
 
     int m = medianOf3(a, lo, lo + (hi - lo)/2, hi);
     exch(a[lo], a[m]);

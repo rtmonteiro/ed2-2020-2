@@ -6,7 +6,9 @@
 
 #define CUTOFF 2
 
-void insert_sort(Item *a, int lo, int hi){
+static int medianOf3(Item *a, int lo, int mid, int hi);
+
+static void insert_sort(Item *a, int lo, int hi){
     for (int i = lo + 1; i <= hi; ++i) {
         int j = i - 1;
         int k = a[i];
@@ -18,7 +20,7 @@ void insert_sort(Item *a, int lo, int hi){
     }
 }
 
-int partition(Item *a, int lo, int hi) {
+static int partition(Item *a, int lo, int hi) {
     int i = lo, j = hi+1;
     Item v = a[lo];
     while(1) {
@@ -32,13 +34,26 @@ int partition(Item *a, int lo, int hi) {
 }
 
 static void quick_sort(Item *a, int lo, int hi) {
-    if (hi <= lo + CUTOFF - 1) {
-        insert_sort(a, lo, hi);
-        return;
-    }
+    if (hi <= lo) return;
+//    if (hi <= lo + CUTOFF - 1) {
+//        insert_sort(a, lo, hi);
+//        return;
+//    }
+
+    int m = medianOf3(a, lo, lo + (hi - lo)/2, hi);
+    exch(a[lo], a[m]);
+
     int j = partition(a, lo, hi);
     quick_sort(a, lo, j-1);
     quick_sort(a, j+1, hi);
+}
+
+static int medianOf3(Item *a, int lo, int mid, int hi) {
+    if (a[mid] < a[lo])  exch(a[lo],  a[mid]);
+    if (a[hi]  < a[lo])  exch(a[lo],  a[hi]);
+    if (a[hi]  < a[mid]) exch(a[mid], a[hi]);
+    exch(a[mid], a[hi - 1]);
+    return hi - 1;
 }
 
 void sort(Item *a, int lo, int hi) {
